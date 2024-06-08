@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-public class MathUtil {
+public class Mathutil {
     private static ArrayList<Integer> runs = new ArrayList<Integer>();
     private static HashMap<Integer,Long> hash = new HashMap<Integer,Long>();
     public static final double PI = 3.14;
     public static final double EUL = 2.78;
-    public static int divide(int n, int m) { //n / m integer division
+    public static int divide(int n, int m) {
         if (m == 0) {
             throw new ArithmeticException("Division by 0 is not allowed. ");
         }
@@ -195,15 +195,15 @@ public class MathUtil {
             arr[i] = copy[i];
         }
     }
-    public static int Random(int m, int n) { //inclusive [m,l];
+    public static int random(int m, int n) { //inclusive [m,l];
         return (int) (Math.random() * (n - m + 1) + m);
     }
-    public static int Simulate(int target, int r1, int r2) {
+    public static int simulate(int target, int r1, int r2) {
         int x = 1;
-        int n = Random(r1,r2);
+        int n = random(r1,r2);
         while (n != target) {
             x++;
-            n = Random(r1,r2);
+            n = random(r1,r2);
         }
         runs.add(x);
         return x;
@@ -247,12 +247,19 @@ public class MathUtil {
         sort(arr);
         return arr;
     }
-    private static int[] convertArray(ArrayList<Integer> arr) {
+    public static int[] convertArray(ArrayList<Integer> arr) {
         int[] clone = new int[arr.size()];
         for (int i = 0; i < arr.size(); i++) {
             clone[i] = arr.get(i);
         }
         return clone;
+    }
+    public static ArrayList<Integer> convertToArrayList(int[] arr) {
+        ArrayList<Integer> ls = new ArrayList<Integer>();
+        for (int x : arr) {
+            ls.add(x);
+        }
+        return ls;
     }
     public static void timer(double d) {
         try {
@@ -260,5 +267,22 @@ public class MathUtil {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+    }
+    public static void printls(int[] arr) {
+        System.out.println("\n");
+        for (int x : arr) {
+            System.out.print(x + " ");
+        }
+        System.out.println("\n");
+    }
+    public static int[] combine(int[] arr1, int[] arr2) {
+        int[] rs = new int[arr1.length + arr2.length];
+        for (int i = 0; i < arr1.length; i++) {
+            rs[i] = arr1[i];
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            rs[arr1.length + i] = arr2[i];
+        }
+        return rs;
     }
 }
